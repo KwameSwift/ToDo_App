@@ -1,6 +1,11 @@
+import os
+
 from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
+from psycopg2 import connect
+from sendgrid import SendGridAPIClient, Mail
+
 from .models import Task
 
 
@@ -20,4 +25,6 @@ def mylists(request):
     for task in tasks:
         task = str(task.id) + ' ' + task.title
         return HttpResponse(task)
+
+
 
